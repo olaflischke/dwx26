@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ChinokDalGenerated" namespace="ChinokDalGenerated" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Album" table="Album" schema="dbo">
+    <id name="AlbumId" type="Int32">
+      <column name="AlbumId" not-null="true" precision="10" scale="0" sql-type="INT" />
+      <generator class="identity" />
+    </id>
+    <property name="Title" type="String">
+      <column name="Title" not-null="true" length="160" sql-type="NVARCHAR(160)" />
+    </property>
+    <many-to-one name="Artist" class="Artist">
+      <column name="ArtistId" not-null="true" precision="10" scale="0" sql-type="INT" />
+    </many-to-one>
+    <set name="Tracks" inverse="true" generic="true">
+      <key>
+        <column name="AlbumId" />
+      </key>
+      <one-to-many class="Track" />
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ChinookDal" namespace="ChinookDal">
+  <class name="Track" optimistic-lock="dirty" dynamic-update="true">
+    <id name="TrackId">
+      <generator class="identity" />
+    </id>
+    <property name="Name" />
+    <property name="Composer" />
+    <property name="Milliseconds"  />
+    <property name="UnitPrice" />
+
+    <many-to-one class="Album"  name="Album" column="AlbumId" not-null="true" />
+    <many-to-one class="Genre" name="Genre" column="GenreId" not-null="true" />
+  </class>
+</hibernate-mapping>

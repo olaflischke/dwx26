@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ChinokDalGenerated" namespace="ChinokDalGenerated" p1:Guid="9376a4be-1121-49fc-9d7a-7bb65a7f31ea" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Album" table="Album" schema="dbo" p1:Guid="89522809-24bb-4958-86e4-7517db72cb88">
+    <id name="AlbumId" type="Int32" p1:ValidateRequired="true" p1:Guid="21c9fd88-b7ff-4220-917c-4ec3110028fa">
+      <column name="AlbumId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Title" type="String" p1:ValidateMaxLength="160" p1:ValidateRequired="true" p1:Guid="d2d63a5f-6d08-46b6-8103-bb2883024add">
+      <column name="Title" not-null="true" length="160" sql-type="nvarchar" p1:unicode="true" />
+    </property>
+    <many-to-one name="Artist" class="Artist" p1:AssociationGuid="080d17e1-ff84-41e6-85dc-d3833b75a22e" p1:Guid="747e1cb1-4b22-4454-bafe-2bd081b91174">
+      <column name="ArtistId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <set name="Tracks" inverse="true" generic="true" p1:AssociationGuid="1a8f6688-6f97-48bc-91d3-f6a8ad69718e" p1:Guid="a050a0a0-8746-4eb6-94e7-42597d7dad3e">
+      <key>
+        <column name="AlbumId" />
+      </key>
+      <one-to-many class="Track" />
+    </set>
+  </class>
+  <class name="Artist" table="Artist" schema="dbo" p1:Guid="6e20e8bd-7ab8-4be0-9af6-8aedf19ae582">
+    <id name="ArtistId" type="Int32" p1:ValidateRequired="true" p1:Guid="89df7332-0f2a-4dbe-a929-dccb1e44078b">
+      <column name="ArtistId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="120" p1:ValidateRequired="false" p1:Guid="047d3360-3d18-4cb0-b0aa-a64dac1a21f0">
+      <column name="Name" not-null="false" length="120" sql-type="nvarchar" p1:unicode="true" />
+    </property>
+    <set name="Albums" inverse="true" generic="true" p1:AssociationGuid="080d17e1-ff84-41e6-85dc-d3833b75a22e" p1:Guid="ce5db0d6-b648-4365-83ec-4aa9fdb8b358">
+      <key>
+        <column name="ArtistId" />
+      </key>
+      <one-to-many class="Album" />
+    </set>
+  </class>
+  <class name="Genre" table="Genre" schema="dbo" p1:Guid="3ab0e27a-7d6b-42f6-b50b-6f7d276d2f2b">
+    <id name="GenreId" type="Int32" p1:ValidateRequired="true" p1:Guid="0f12b7e4-db61-40c5-91d0-55d51f9db524">
+      <column name="GenreId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:nullable="true" p1:ValidateMaxLength="120" p1:ValidateRequired="false" p1:Guid="8c879c63-5454-4e6e-a2ec-d65b6da4d7e0">
+      <column name="Name" not-null="false" length="120" sql-type="nvarchar" p1:unicode="true" />
+    </property>
+    <set name="Tracks" inverse="true" generic="true" p1:AssociationGuid="8ea6aeb7-7613-4a20-b6e1-36bac93361e8" p1:Guid="990f2344-66b0-4b5d-b558-a2e04854ea57">
+      <key>
+        <column name="GenreId" />
+      </key>
+      <one-to-many class="Track" />
+    </set>
+  </class>
+  <class name="Track" table="Track" schema="dbo" p1:Guid="591f4303-e03f-403c-ab20-77979fec7950">
+    <id name="TrackId" type="Int32" p1:ValidateRequired="true" p1:Guid="66bb27ed-ec18-40f1-ad22-5f387c6d77d7">
+      <column name="TrackId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="44dfbaaf-60a9-4581-8b7f-b11fd03616e0">
+      <column name="Name" not-null="true" length="200" sql-type="nvarchar" p1:unicode="true" />
+    </property>
+    <property name="MediaTypeId" type="Int32" p1:ValidateRequired="true" p1:Guid="33aa5d36-612d-4054-98ea-4e41d0084736">
+      <column name="MediaTypeId" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="Composer" type="String" p1:nullable="true" p1:ValidateMaxLength="220" p1:ValidateRequired="false" p1:Guid="ed4eef15-3f45-4759-80aa-e286901ba5df">
+      <column name="Composer" not-null="false" length="220" sql-type="nvarchar" p1:unicode="true" />
+    </property>
+    <property name="Milliseconds" type="Int32" p1:ValidateRequired="true" p1:Guid="c91f02e7-32b4-4855-a5cb-4fb568aa54b6">
+      <column name="Milliseconds" not-null="true" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="Bytes" type="Int32" p1:nullable="true" p1:ValidateRequired="false" p1:Guid="c590b427-a41d-4e7d-b222-3d395eaa4f43">
+      <column name="Bytes" not-null="false" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </property>
+    <property name="UnitPrice" type="Decimal" p1:ValidateRequired="true" p1:Guid="96809710-c436-48c0-80d3-287d60c190d6">
+      <column name="UnitPrice" not-null="true" precision="10" scale="2" sql-type="numeric" p1:unicode="false" />
+    </property>
+    <many-to-one name="Album" class="Album" p1:AssociationGuid="1a8f6688-6f97-48bc-91d3-f6a8ad69718e" p1:Guid="05ec38a9-03b1-4716-a46b-7a20bbc4ab67">
+      <column name="AlbumId" not-null="false" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+    <many-to-one name="Genre" class="Genre" p1:AssociationGuid="8ea6aeb7-7613-4a20-b6e1-36bac93361e8" p1:Guid="296350e4-d5d9-4a40-b3cc-66327abb9238">
+      <column name="GenreId" not-null="false" precision="10" scale="0" sql-type="int" p1:unicode="false" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ChinookNHDal" namespace="ChinookNHDal">
+  <class name="Genre" table="Genre">
+    <id name="GenreId">
+      <generator class="identity" />
+    </id>
+    <property name="Name" column="Name"  />
+    <bag name="Tracks">
+      <key column="GenreId" />
+      <one-to-many class="Track"/>
+    </bag>
+  </class>
+</hibernate-mapping>

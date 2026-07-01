@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ChinokDalGenerated" namespace="ChinokDalGenerated" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Track" table="Track" schema="dbo">
+    <id name="TrackId" type="Int32">
+      <column name="TrackId" not-null="true" precision="10" scale="0" sql-type="INT" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String">
+      <column name="Name" not-null="true" length="200" sql-type="NVARCHAR(200)" />
+    </property>
+    <property name="MediaTypeId" type="Int32">
+      <column name="MediaTypeId" not-null="true" precision="10" scale="0" sql-type="INT" />
+    </property>
+    <property name="Composer" type="String">
+      <column name="Composer" not-null="false" length="220" sql-type="NVARCHAR(220)" />
+    </property>
+    <property name="Milliseconds" type="Int32">
+      <column name="Milliseconds" not-null="true" precision="10" scale="0" sql-type="INT" />
+    </property>
+    <property name="Bytes" type="Int32">
+      <column name="Bytes" not-null="false" precision="10" scale="0" sql-type="INT" />
+    </property>
+    <property name="UnitPrice" type="Decimal">
+      <column name="UnitPrice" not-null="true" precision="10" scale="2" sql-type="NUMERIC(10,2)" />
+    </property>
+    <many-to-one name="Album" class="Album">
+      <column name="AlbumId" not-null="false" precision="10" scale="0" sql-type="INT" />
+    </many-to-one>
+    <many-to-one name="Genre" class="Genre">
+      <column name="GenreId" not-null="false" precision="10" scale="0" sql-type="INT" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>
